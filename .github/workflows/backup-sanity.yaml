@@ -1,4 +1,4 @@
-name: Backup Sanity
+name: Deploy Sanity
 on:
   push:
     branches: [main]
@@ -8,8 +8,8 @@ jobs:
     name: Backup dataset
     steps:
       - uses: actions/checkout@v2
-      - name: Export dataset
-        uses: sanity-io/github-action-sanity@v1
+      - name: GitHub Action for Sanity.io
+        uses: sanity-io/github-action-sanity@v0.1-alpha
         env:
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
         with:
@@ -19,5 +19,4 @@ jobs:
         with:
           name: backup-tarball
           path: backups/backup.tar.gz
-          # Fails the workflow if no files are found; defaults to 'warn'
           if-no-files-found: error

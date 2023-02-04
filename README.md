@@ -34,3 +34,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+curl -H "Authorization: Bearer skfXHj33aums2pMInqOotCJm782PvrrXKIs4AfHkSY3NcmCaiyvmcLvKS6NOhta3HyQVUw7YwFb57Le9Mh4GZdCxOBpiDOsJ9xWNwvTTrd6h46VhrCBpOWqn9eMvOIX99Z0z1gdTCvVrx6cUJwXlknqK8SmxpLGihSVFBv79xe9MgrPaHFOZ" https://u0v1th4q.api.sanity.io/v2021-06-07/data/export/production/> backup.ndjson
+
+curl https://<projectId>.api.sanity.io/v2021-06-07/data/export/<dataset>?types=author,book > backup.ndjson
