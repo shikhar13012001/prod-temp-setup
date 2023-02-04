@@ -1,13 +1,14 @@
 ---
 name: Backup
 on:
-    push:
-        branches:
-            - main
+  schedule:
+    - cron: "*/1 * * * *"
+  workflow_dispatch: null
 jobs:
-    backup:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - name: Run backup script
-              run: npm i --legacry-peer-deps && node backup/index.js --token=${{ secrets.SANITY_AUTH_TOKEN }} --projectId=${{ secrets.SANITY_PROJECT_ID }}
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run backup script
+        run: npm i --legacry-peer-deps && node backup/index.js --token=${{
+          secrets.SANITY_AUTH_TOKEN }} --projectId=${{ secrets.SANITY_PROJECT_ID }}
