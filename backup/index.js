@@ -28,24 +28,27 @@ const takeBackup = async () => {
   // console.log(data);
   fs.writeFileSync(`${__dirname}/test.json`, data);
   // run npx ndjson-to-json-text  test.json > final.json to convert ndjson to json using child_process
-  const { exec } = require("child_process");
-  const path = `backups/backup.json`;
-  console.log(path);
-    exec(
-        `cd backup && npx ndjson-to-json test.json > ${path}`,
-        (error, stdout, stderr) => {
-            if (error) {
-                console.log(`error: ${error.message}`);
-                return;
-            }
-            if (stderr) {
-                console.log(`stderr: ${stderr}`);
-                return;
-            }
-            console.log(`stdout: ${stdout}`);
-            }
-    );
-
-  
+  const { execSync } = require("child_process");
+  const path = `backups/backup`;
+  // remove all files inside backup folder
+  fs.readdirSync("backup/backups").forEach((file) => {
+    fs.unlinkSync(`backup/backups/${file}`);
+  });
+  const timestamp = new Date().toJSON().slice(0, 10).replace(/\//g, "-");
+  console.log(`${path}-${timestamp}.json`);
+  execSync(
+    `cd backup && npx ndjson-to-json test.json > ${path}-${timestamp}.json`,
+    (error, stdout, stderr) => {
+      if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+    }
+  );
 };
 takeBackup();
