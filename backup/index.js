@@ -7,7 +7,7 @@ const extractValue = (arg) => {
 const takeBackup = async () => {
   // get args
   const args = process.argv.slice(2).map(extractValue);
-
+  console.log(args);
   // get token from args
   const token = `Bearer ${args[0]}`;
   const projectId = args[1];
