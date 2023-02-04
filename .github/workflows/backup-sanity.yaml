@@ -1,22 +1,13 @@
 ---
-name: Deploy Sanity
+name: Backup
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 jobs:
-  backup-dataset:
-    runs-on: ubuntu-18.04
-    name: Backup dataset
-    steps:
-      - uses: actions/checkout@v2
-      - run: npm install --global sanity@latest && npx sanity dataset export production backup.tar.gz
-        working-directory: backup
-        env:
-          SANITY_STUDIO_API_PROJECT_ID: u0v1th4q
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
-      - uses: actions/upload-artifact@v2
-        with:
-          name: backup
-          path: backup/backup.tar.gz
-          retention-days: 10
+    backup:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Run backup script
+              run: npm i --legacry-peer-deps && node backup/index.js --token ${{ secrets.SANITY_AUTH_TOKEN }} --projectId=${{ secrets.SANITY_PROJECT_ID }}
