@@ -29,7 +29,7 @@ const takeBackup = async () => {
   const { execSync } = require("child_process");
   
   execSync(
-    `npx ndjson-to-json test.json > ${__dirname}/backups/backup.json`,
+    `npx ndjson-to-json test.json > ${__dirname}/backup/backups/backup.json`,
     (err, stdout, stderr) => {
       if (err) {
         //some err occurred
