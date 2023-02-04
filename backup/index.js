@@ -22,9 +22,9 @@ const takeBackup = async () => {
   ).catch((err) => {
     console.error(err);
     });
-    
+
   // console.log(data);
-  fs.writeFileSync("test.json", data);
+   fs.writeFileSync("test.json", data);
   // run npx ndjson-to-json-text  test.json > final.json to convert ndjson to json using child_process
   const { execSync } = require("child_process");
   
