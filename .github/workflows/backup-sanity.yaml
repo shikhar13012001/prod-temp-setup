@@ -10,7 +10,7 @@ jobs:
     name: Backup dataset
     steps:
       - uses: actions/checkout@v2
-      - run: npx @sanity/cli dataset export production backup.tar.gz
+      - run: cd sanity && npm i && npx sanity dataset export production backup.tar.gz
         working-directory: backup
         env:
           SANITY_STUDIO_API_PROJECT_ID: u0v1th4q
