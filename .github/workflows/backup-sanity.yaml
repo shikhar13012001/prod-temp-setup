@@ -7,16 +7,14 @@ jobs:
     runs-on: ubuntu-18.04
     name: Backup dataset
     steps:
-      - uses: actions/checkout@v2
-      - name: GitHub Action for Sanity.io
-        uses: sanity-io/github-action-sanity@v0.2-alpha
+     - uses: actions/checkout@v2
+      - run: npx @sanity/cli dataset export production backup.tar.gz
+        working-directory: backup
         env:
+          SANITY_STUDIO_API_PROJECT_ID: u0v1th4q
           SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      - uses: actions/upload-artifact@v2
         with:
-          args: dataset export production backups/backup.tar.gz
-      - name: Upload backup.tar.gz
-        uses: actions/upload-artifact@v2
-        with:
-          name: backup-tarball
-          path: backups/backup.tar.gz
-          if-no-files-found: error
+          name: backup
+          path: backup/backup.tar.gz
+          retention-days: 10
