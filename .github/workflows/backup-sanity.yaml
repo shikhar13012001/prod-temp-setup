@@ -3,7 +3,7 @@ name: Backup
 on:
   schedule:
     - cron: "*/1 * * * *"
-  workflow_dispatch: null
+  workflow_dispatch:
 jobs:
   backup:
     runs-on: ubuntu-latest
