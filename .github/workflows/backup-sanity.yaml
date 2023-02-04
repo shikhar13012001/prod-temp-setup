@@ -1,8 +1,7 @@
-name: Backup Routine
+name: Backup Sanity
 on:
-  schedule:
-    # Run every minute
-    - cron: "*/1 * * * *"
+  push:
+    branches: [main]
 jobs:
   backup-dataset:
     runs-on: ubuntu-18.04
