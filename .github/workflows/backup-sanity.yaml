@@ -2,8 +2,8 @@
 name: Backup
 on:
   schedule:
-    - cron: "*/5 * * * *"
-  workflow_dispatch:
+    # run every 5 minutes
+    - cron: '*/5 * * * *' 
 jobs:
   backup:
     runs-on: ubuntu-latest
