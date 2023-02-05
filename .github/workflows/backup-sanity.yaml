@@ -1,14 +1,12 @@
----
 name: Backup
+
 on:
   schedule:
-    # r un e very 5 minutes
-    - cron: '*/5 * * * *' 
+    - cron: "*/5 * * * *"
+
 jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Run backup script
-        run: npm i --legacy-peer-deps && node backup/index.js --token=${{
-          secrets.SANITY_AUTH_TOKEN }} --projectId=${{ secrets.SANITY_PROJECT_ID }}
+      - name: Print name
+        run: echo "Hello from Github Actions"
